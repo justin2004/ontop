@@ -1,6 +1,18 @@
 version: '3'
 
 services:
+
+  tester:
+    image: amazoncorretto:11.0.26-alpine
+    command: sleep 1000000
+    container_name: tester-container
+    volumes:
+      - /Users/justin/github/forks/ontop:/mnt
+    networks:
+      - app-network
+    depends_on:
+      - mysql-v8
+
   pgsql:
     build: ./pgsql
     env_file: .env
@@ -51,6 +63,8 @@ services:
       - MSSQL_PID=Express
 
   mysql-v8:
+    networks:
+      - app-network
     build:
       context: ./mysql
       args:
@@ -98,3 +112,8 @@ services:
       - "8051:8051"  # Spark worker
       - "7078:7078"
       - "10000:10000"  # ThriftServer JDBC endpoint
+
+
+networks:
+  app-network:
+    driver: bridge

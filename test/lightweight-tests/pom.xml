@@ -17,7 +17,9 @@
         <maven.deploy.skip>true</maven.deploy.skip>
         <filter.test.resources>true</filter.test.resources>
         <skipTests>true</skipTests>
-        <docker.url>localhost</docker.url>
+        <!-- <docker.url>localhost</docker.url> -->
+        <docker.url>mysql-v8</docker.url>
+        <docker.port>3306</docker.port>
         <docker.db2.password>obda-pwd</docker.db2.password>
         <docker.mssql.password>Mssql1.0</docker.mssql.password>
         <docker.mysql.password>mysql</docker.mysql.password>
